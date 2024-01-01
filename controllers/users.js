@@ -80,6 +80,20 @@ const userContorller = {
       res.status(400).json({ error: error.message });
     }
   },
+  getUser: async (req, res) => {
+    try {
+      //get the user id from the request
+      const userId = req.userId;
+
+      // get the user from the database
+      const user = await User.findById(userId);
+
+      // return the user
+      res.json({ message: 'user retrieved', user });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
 };
 
 module.exports = userContorller;
